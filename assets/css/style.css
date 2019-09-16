@@ -3,3 +3,11 @@ body {
     background-image: url("../images/Enterprise-Background.jpg");
     background-size: 100%;
 }
+
+.float {
+    float: right;
+}
+
+.card-text {
+    text-align: center;
+}
