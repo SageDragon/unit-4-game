@@ -5,8 +5,8 @@ var enemyAttackHP;
 var enemyDefendHP;
 var charAdjAttackHP;
 var charAdjDefendHP;
-var enemyAdjAttackHP;
-var enemyAdjDefendHP;
+var hero = "";
+var enemy = "";
 
 
 
@@ -41,6 +41,7 @@ var chars = {
 			}
 };
 
+
 //Make reset game function
 function reset() {
     //Load charater profiles into page
@@ -57,10 +58,60 @@ function reset() {
 
 //Create charater selection function into page
 $(document).ready(function(){
-    reset();
-//Create function for basicATack algorithm for basicATack and HP
-    
+	reset();	
+$(".card-body").on("click", function(){
 
+	if(hero == ""){
+		myhero()
+	}
+	else{
+		myenemy()
+	};
+
+	function myhero(){
+	if(hero == ""){
+		hero = $(this).attr("id");
+		// $(hero).css({"background-color": "green"});
+		   console.log(hero)
+	};
+	if(hero == "char01"){
+		$("#char01").css({"background-color": "green"});
+	};
+	if(hero == "char02"){
+		$("#char02").css({"background-color": "green"});
+	};
+	if(hero == "char03"){
+		$("#char03").css({"background-color": "green"});
+	};
+	if(hero == "char01"){
+		$("#char04").css({"background-color": "green"});
+	};
+	};
+	
+	function myenemy(){
+		if(enemy == ""){
+			enemy = $(this).attr("id");
+			   console.log(enemy)
+		};
+		if(enemy == "char01"){
+			$("#char01").css({"background-color": "red"});
+		};
+		if(enemy == "char02"){
+			$("#char02").css({"background-color": "red"});
+		};
+		if(enemy == "char03"){
+			$("#char03").css({"background-color": "red"});
+		};
+		if(enemy == "char01"){
+			$("#char04").css({"background-color": "red"});
+		};
+		};
+	
+	});
+
+//Create function for basicATack algorithm and for basicATack and HP
+
+//Call function for attack/defense multiplier algorithm
 });
 
 
