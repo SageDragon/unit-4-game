@@ -58,11 +58,12 @@ function reset() {
 //Create charater selection function into page
 $(document).ready(function(){
     reset();
+//Create function for basicATack algorithm for basicATack and HP
+    
 
 });
 
 
 //Function for hiding/unhiding unselected or dead charaters
-//Create function for basicATack algorithm for basicATack and HP
 //Make you lose game function
 //Make you won game function
