@@ -39,32 +39,55 @@ function myhero(){
     // debugger;
     
     if(hero === "char01"){
-        $("#char01").css({"background-color": "green"});
+		workingHero = $(chars.data);
+		$("#char01").css({"background-color": "green"});
+		$("#infoboard2").html("Your Hero is " + chars.data.charName);
     };
     if(hero === "char02"){
-        $("#char02").css({"background-color": "green"});
+		workingHero = $(chars.locutus);
+		$("#char02").css({"background-color": "green"});
+		$("#infoboard2").html("Your Hero is " + chars.locutus.charName);
+
     };
     if(hero === "char03"){
-        $("#char03").css({"background-color": "green"});
+		workingHero = $(chars.will);
+		$("#char03").css({"background-color": "green"});
+		$("#infoboard2").html("Your Hero is " + chars.will.charName);
+
     };
     if(hero === "char04"){
-        $("#char04").css({"background-color": "green"});
+		workingHero = $(chars.worf);
+		$("#char04").css({"background-color": "green"});
+		$("#infoboard2").html("Your Hero is " + chars.worf.charName);
+
     };
-	};
+};
 	
 function myenemy(){
     // enemy = $(this).attr("id");
     if(enemy === "char01"){
-        $("#char01").css({"background-color": "red"});
+		workingEnemy = $(chars.data);
+		$("#char01").css({"background-color": "red"});
+		$("#infoboard1").html(" :  Your Opponent is " + chars.data.charName);
+
     };
     if(enemy === "char02"){
-        $("#char02").css({"background-color": "red"});
+		workingEnemy = $(chars.locutus);
+		$("#char02").css({"background-color": "red"});
+		$("#infoboard1").html(" :  Your Opponent is " + chars.locutus.charName);
+
     };
     if(enemy === "char03"){
-        $("#char03").css({"background-color": "red"});
+		workingEnemy = $(chars.will);
+		$("#char03").css({"background-color": "red"});
+		$("#infoboard1").html(" :  Your Opponent is " + chars.will.charName);
+
     };
     if(enemy === "char04"){
-        $("#char04").css({"background-color": "red"});
+		workingEnemy = $(chars.worf);
+		$("#char04").css({"background-color": "red"});
+		$("#infoboard1").html(" :  Your Opponent is " + chars.worf.charName);
+
     };
 };
 //Make reset game function
@@ -79,38 +102,47 @@ function reset() {
     $(".hp03").html("HP " + chars.will.HP);
     $(".hp04").html("HP " + chars.worf.HP);
 };
+
+function reload() {
+	location.reload(true)
+};
+
+function attack(){
+
+}
+
+
 //Create charater selection function into page
 $(document).ready(function(){
     reset();    
-$(".card-body").on("click", function(){
+	$(".card-body").on("click", function(){
     
-    if(heroPicked){
-        hero = $(this).attr("id");
-        // $(hero).css({"background-color": "green"});
-        console.log($(this).attr("id"))
-        myhero();
-        console.log("working")
-        //use this to not allow access again
-        heroPicked = false;
-    }
-    else if(enemyPicked) {
-        enemy = $(this).attr("id");
-        console.log($(this).attr("id"))
-        myenemy();
-        console.log("working")
-        enemyPicked = false;
+    	if(heroPicked){
+        	hero = $(this).attr("id");
+        	// $(hero).css({"background-color": "green"});
+        	console.log($(this).attr("id"));
+        	myhero();
+        	console.log("working");
+        	//use this to not allow access again
+        	heroPicked = false;
+    	}
+    	else if(enemyPicked) {
+        	enemy = $(this).attr("id");
+        	console.log($(this).attr("id"));
+        	myenemy();
+        	console.log("working");
+        	enemyPicked = false;
         
-    };
-    
-    
-    
-    
-    
-    });
-	// 	myenemy()
-	// };
+		};
+		if((heroPicked == false) && (enemyPicked == false)){
+		$("#infoboard3").html("Click The Attack Button To Get Started")
+			
+		};
+
 
 	});
+
+});
 
 //Create function for basicATack algorithm and for basicATack and HP
 
