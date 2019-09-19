@@ -140,8 +140,11 @@ function attack() {
 
 	else if (enemyDefendHP <= 0){
 		$("#" + enemy).hide();
+		$("#infoboard3").html("You Defeated " + workingEnemy.charName + "Select your Next Opponent!");
+		enemyPicked = true;
+		myenemy();
 	}
-	else if (charDefendHP > 0) {
+	else if (charDefendHP >= 0) {
 		charAdjAttackHP = (charAttackHP + charAdjAttackHP);
 		charDefendHP = (charDefendHP - enemyAttackHP);
 		enemyDefendHP = (enemyDefendHP - charAdjAttackHP);
