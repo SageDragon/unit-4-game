@@ -3,7 +3,7 @@ var charAttackHP;
 var charDefendHP;
 var enemyAttackHP;
 var enemyDefendHP;
-var charAdjAttackHP;
+var charAdjAttackHP = 0;
 var charAdjDefendHP;
 var hero = "";
 var enemy = "";
@@ -39,24 +39,36 @@ function myhero(){
     // debugger;
     
     if(hero === "char01"){
-		workingHero = $(chars.data);
+		heroNumber = 01;
+		workingHero = chars.data;
+		charAttackHP = workingHero.basicAT;
+		charDefendHP = workingHero.HP;
 		$("#char01").css({"background-color": "green"});
 		$("#infoboard2").html("Your Hero is " + chars.data.charName);
     };
     if(hero === "char02"){
-		workingHero = $(chars.locutus);
+		heroNumber = 02;
+		workingHero = chars.locutus;
+		charAttackHP = workingHero.basicAT;
+		charDefendHP = workingHero.HP;
 		$("#char02").css({"background-color": "green"});
 		$("#infoboard2").html("Your Hero is " + chars.locutus.charName);
 
     };
     if(hero === "char03"){
-		workingHero = $(chars.will);
+		heroNumber = 03;
+		workingHero = chars.will;
+		charAttackHP = workingHero.basicAT;
+		charDefendHP = workingHero.HP;
 		$("#char03").css({"background-color": "green"});
 		$("#infoboard2").html("Your Hero is " + chars.will.charName);
 
     };
     if(hero === "char04"){
-		workingHero = $(chars.worf);
+		heroNumber = 04;
+		workingHero = chars.worf;
+		charAttackHP = workingHero.basicAT;
+		charDefendHP = workingHero.HP;
 		$("#char04").css({"background-color": "green"});
 		$("#infoboard2").html("Your Hero is " + chars.worf.charName);
 
@@ -66,25 +78,37 @@ function myhero(){
 function myenemy(){
     // enemy = $(this).attr("id");
     if(enemy === "char01"){
-		workingEnemy = $(chars.data);
+		enemyNumber = 01;
+		workingEnemy = chars.data;
+		enemyAttackHP = workingEnemy.returnAT;
+		enemyDefendHP = workingEnemy.HP;
 		$("#char01").css({"background-color": "red"});
 		$("#infoboard1").html(" :  Your Opponent is " + chars.data.charName);
 
     };
     if(enemy === "char02"){
-		workingEnemy = $(chars.locutus);
+		enemyNumber = 02;
+		workingEnemy = chars.locutus;
+		enemyAttackHP = workingEnemy.returnAT;
+		enemyDefendHP = workingEnemy.HP;
 		$("#char02").css({"background-color": "red"});
 		$("#infoboard1").html(" :  Your Opponent is " + chars.locutus.charName);
 
     };
     if(enemy === "char03"){
-		workingEnemy = $(chars.will);
+		enemyNumber = 03;
+		workingEnemy = chars.will;
+		enemyAttackHP = workingEnemy.returnAT;
+		enemyDefendHP = workingEnemy.HP;
 		$("#char03").css({"background-color": "red"});
 		$("#infoboard1").html(" :  Your Opponent is " + chars.will.charName);
 
     };
     if(enemy === "char04"){
-		workingEnemy = $(chars.worf);
+		enemyNumber = 04;
+		workingEnemy = chars.worf;
+		enemyAttackHP = workingEnemy.returnAT;
+		enemyDefendHP = workingEnemy.HP;
 		$("#char04").css({"background-color": "red"});
 		$("#infoboard1").html(" :  Your Opponent is " + chars.worf.charName);
 
@@ -107,15 +131,33 @@ function reload() {
 	location.reload(true)
 };
 
-function attack(){
+//Create function for basicATack algorithm and for basicATack and HP
+function attack() {
+	if (charDefendHP <= 0){
+		alert("You've been Defeated... GAME OVER!!!");
+		reload();
+	}
 
-}
+	else if (enemyDefendHP <= 0){
+		$("#" + enemy).hide();
+	}
+	else if (charDefendHP > 0) {
+		charAdjAttackHP = (charAttackHP + charAdjAttackHP);
+		charDefendHP = (charDefendHP - enemyAttackHP);
+		enemyDefendHP = (enemyDefendHP - charAdjAttackHP);
+		$("#infoboard3").html("You Attacked " + workingEnemy.charName + " For " + charAdjAttackHP + " You Were Attaked For " + enemyAttackHP);
+		$(".hp0" + enemyNumber).html("HP " + enemyDefendHP);
+		$(".hp0" + heroNumber).html("HP " + charDefendHP);
+		console.log(enemyDefendHP);
+		console.log(charDefendHP);
+	};
+};
 
 
 //Create charater selection function into page
 $(document).ready(function(){
     reset();    
-	$(".card-body").on("click", function(){
+	$(".card").on("click", function(){
     
     	if(heroPicked){
         	hero = $(this).attr("id");
@@ -135,8 +177,8 @@ $(document).ready(function(){
         
 		};
 		if((heroPicked == false) && (enemyPicked == false)){
-		$("#infoboard3").html("Click The Attack Button To Get Started")
-			
+			$("#infoboard3").html("Click The Attack Button To Get Started");
+
 		};
 
 
@@ -144,7 +186,6 @@ $(document).ready(function(){
 
 });
 
-//Create function for basicATack algorithm and for basicATack and HP
 
 //Call function for attack/defense multiplier algorithm
 
